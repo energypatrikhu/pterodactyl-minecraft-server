@@ -18,7 +18,7 @@ on:
       - "compose-docs.yml"
       - "zensical.toml"
       - ".readthedocs.yaml"
-      - "renovate.json*"
+      - "renovate.json5"
 
 jobs:
   build:
@@ -109,7 +109,7 @@ jobs:
           password: ${{ github.token }}
 
       - name: Build and push
-        uses: docker/build-push-action@v6.18.0
+        uses: docker/build-push-action@v6.19.2
         if: github.actor == github.repository_owner
         with:
           platforms: ${{ matrix.platforms }}
