@@ -21,7 +21,27 @@ on:
       - "renovate.json5"
 
 jobs:
+  cleanup:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Login to GHCR
+        uses: docker/login-action@v3.6.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ github.token }}
+
+      - name: Delete old package versions
+        continue-on-error: true
+        uses: actions/delete-package-versions@v5
+        with:
+          package-name: ${{ github.event.repository.name }}
+          package-type: "container"
+          min-versions-to-keep: 0
+          delete-only-untagged-versions: false
+
   build:
+    needs: cleanup
     strategy:
       fail-fast: false
       matrix:
@@ -107,15 +127,6 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ github.token }}
-
-      - name: Delete old package versions
-        continue-on-error: true
-        uses: actions/delete-package-versions@v5
-        with:
-          package-name: ${{ github.event.repository.name }}
-          package-type: "container"
-          min-versions-to-keep: 0
-          delete-only-untagged-versions: false
 
       - name: Build and push
         uses: docker/build-push-action@v6.19.2
