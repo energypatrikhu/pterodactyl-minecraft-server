@@ -108,6 +108,15 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ github.token }}
 
+      - name: Delete old package versions
+        continue-on-error: true
+        uses: actions/delete-package-versions@v5
+        with:
+          package-name: ${{ github.event.repository.name }}
+          package-type: "container"
+          min-versions-to-keep: 0
+          delete-only-untagged-versions: false
+
       - name: Build and push
         uses: docker/build-push-action@v6.19.2
         if: github.actor == github.repository_owner
