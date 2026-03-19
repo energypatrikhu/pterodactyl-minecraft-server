@@ -3,16 +3,16 @@ services:
     depends_on:
       mc:
         condition: service_started
-    image: ${IMAGE_TO_TEST:-itzg/minecraft-server}
+    image: ${IMAGE_TO_TEST:-ghcr.io/energypatrikhu/pterodactyl-minecraft-server}
     entrypoint: mc-monitor
     command: status --host mc --retry-interval 1s --timeout 1s --retry-limit 60
     restart: no
   mc:
     restart: no
-    image: ${IMAGE_TO_TEST:-itzg/minecraft-server}
+    image: ${IMAGE_TO_TEST:-ghcr.io/energypatrikhu/pterodactyl-minecraft-server}
     environment:
       EULA: "TRUE"
       VERSION: ${MINECRAFT_VERSION:-LATEST}
       TYPE: PAPER
-      # regression tests https://github.com/itzg/docker-minecraft-server/issues/2545
+      # regression tests https://github.com/energypatrikhu/pterodactyl-minecraft-server/issues/2545
       MOTD: "Foo§rBar"

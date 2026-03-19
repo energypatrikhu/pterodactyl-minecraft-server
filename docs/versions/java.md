@@ -2,11 +2,11 @@
 
 Image references can either omit the tag, which implies the tag `latest`, such as
 
-    itzg/minecraft-server
+    ghcr.io/energypatrikhu/pterodactyl-minecraft-server
 
 or explicitly include the tag, such as
 
-    itzg/minecraft-server:<tag>
+    ghcr.io/energypatrikhu/pterodactyl-minecraft-server:<tag>
 
 where `<tag>` refers to the first column of this table:
 
@@ -32,17 +32,17 @@ Notes
 !!! example "Example using java8"
 
     With docker run command-line
-    
+
     ```
-    docker run -it -e EULA=true itzg/minecraft-server:java8
+    docker run -it -e EULA=true ghcr.io/energypatrikhu/pterodactyl-minecraft-server:java8
     ```
-    
+
     or in a compose file
-    
+
     ```yaml
     services:
       mc:
-        image: itzg/minecraft-server:java8
+        image: ghcr.io/energypatrikhu/pterodactyl-minecraft-server:java8
     ```
 
 !!! note "Latest"
@@ -59,16 +59,16 @@ Since the tags referenced above will shift as the newest image build brings in n
 
 The syntax of released image tags is:
 
-    itzg/minecraft-server:<release>-<java tag>
+    ghcr.io/energypatrikhu/pterodactyl-minecraft-server:<release>-<java tag>
 
-where `java tag` still refers to the first column of the table above and `release` refers to [one of the image releases](https://github.com/itzg/docker-minecraft-server/releases).
+where `java tag` still refers to the first column of the table above and `release` refers to [one of the image releases](https://github.com/energypatrikhu/pterodactyl-minecraft-server/releases).
 
 !!! example
 
     For example, the 2024.4.0 release of the Java 17 image would be
-    
+
     ```
-    itzg/minecraft-server:2024.4.0-java17
+    ghcr.io/energypatrikhu/pterodactyl-minecraft-server:2024.4.0-java17
     ```
 
 ### Stable image tag
@@ -81,7 +81,7 @@ The `stable` image tag combines the benefits of `latest` and [release versions](
 
 ### Class file version 65.0
 
-If encountering a startup failure similar to the following examples, then ensure that the latest image has been re-pulled to use a Java 21. Alternatively, set the image tag specifically to `itzg/minecraft-server:java21`.
+If encountering a startup failure similar to the following examples, then ensure that the latest image has been re-pulled to use a Java 21. Alternatively, set the image tag specifically to `ghcr.io/energypatrikhu/pterodactyl-minecraft-server:java21`.
 
 > Exception in thread "ServerMain" java.lang.UnsupportedClassVersionError: org/bukkit/craftbukkit/Main has been compiled by a more recent version of the Java Runtime (class file version 65.0), this version of the Java Runtime only recognizes class file versions up to 61.0
 
@@ -111,7 +111,7 @@ For Forge versions less than 1.18, you _must_ use the `java8-multiarch` (or othe
 In general, if you see the following line in a server startup failure, then it means you need to be using Java 8 instead of the latest image Java version:
 
 ```
-Caused by: java.lang.ClassCastException: class jdk.internal.loader.ClassLoaders$AppClassLoader 
+Caused by: java.lang.ClassCastException: class jdk.internal.loader.ClassLoaders$AppClassLoader
    cannot be cast to class java.net.URLClassLoader
 ```
 
@@ -134,11 +134,11 @@ The following image tags have been deprecated and are no longer receiving update
 - java19
 - java20-graalvm, java20, java20-alpine
 - java23-*
-- java24, java24-graalvm 
+- java24, java24-graalvm
 - java8-multiarch is still built and pushed, but please move to java8 instead
 - java8-alpine, java8-jdk, java8-openj9, java8-graalvm-ce
 
 ## JSON Listing
 
 
-Information about the image tags is available for programmatic access at <https://raw.githubusercontent.com/itzg/docker-minecraft-server/refs/heads/master/images.json>
+Information about the image tags is available for programmatic access at <https://raw.githubusercontent.com/energypatrikhu/pterodactyl-minecraft-server/refs/heads/master/images.json>

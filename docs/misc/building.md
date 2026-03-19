@@ -9,7 +9,7 @@ services:
     build:
       context: .
       dockerfile_inline: |
-        FROM itzg/minecraft-server:latest
+        FROM ghcr.io/energypatrikhu/pterodactyl-minecraft-server:latest
 
         RUN apt-get update && apt-get install -y \
             webp \
@@ -22,37 +22,37 @@ services:
     ports:
       - "25565:25565/tcp"
     volumes:
-      - ./data:/data
+      - ./home/container:/home/container
 ```
 
 Here is an example to add Nvidia GPU support for C2ME:
 
 ??? Example "C2ME GPU example"
     ```yaml title="compose.yaml"
-    
+
     services:
       mc:
         build:
           context: .
           dockerfile_inline: |
-            FROM itzg/minecraft-server:java25
-    
+            FROM ghcr.io/energypatrikhu/pterodactyl-minecraft-server:java25
+
             # Install OpenCL loader and NVIDIA driver capabilities
             RUN apt-get update && apt-get install -y \
                 ocl-icd-libopencl1 \
                 opencl-headers \
                 clinfo \
                 && rm -rf /var/lib/apt/lists/*
-    
+
             # 1. Create the vendor directory
             # 2. Tell OpenCL to use the NVIDIA library
             RUN mkdir -p /etc/OpenCL/vendors && \
                 echo "libnvidia-opencl.so.1" > /etc/OpenCL/vendors/nvidia.icd
-    
+
             # Tell the NVIDIA container runtime to expose all GPU capabilities (including compute/utility)
             ENV NVIDIA_VISIBLE_DEVICES all
             ENV NVIDIA_DRIVER_CAPABILITIES compute,utility,graphics,video
-    
+
             COPY ./mods /mods
           pull: true # Always pull new base image
         pull_policy: build
@@ -75,7 +75,7 @@ Here is an example to add Nvidia GPU support for C2ME:
         ports:
           - "25565:25565/tcp"
         volumes:
-          - ./data:/data
+          - ./home/container:/home/container
     ```
 
 

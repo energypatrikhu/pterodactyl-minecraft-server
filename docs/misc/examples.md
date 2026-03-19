@@ -1,16 +1,16 @@
 # Examples
 
-Various examples are [maintained in the repository](https://github.com/itzg/docker-minecraft-server/tree/master/examples). The sections below highlight a few particular ones.
+Various examples are [maintained in the repository](https://github.com/energypatrikhu/pterodactyl-minecraft-server/tree/master/examples). The sections below highlight a few particular ones.
 
 ## Bedrock compatible server
 
-Using the [GeyserMC plugin](https://geysermc.org/) with a Paper server (or similar) "enables clients from Minecraft Bedrock Edition to join your Minecraft Java server". The example also includes [Floodgate](https://wiki.geysermc.org/floodgate/) which "allows Xbox Live authenticated Bedrock users to join without a Java Edition account". 
+Using the [GeyserMC plugin](https://geysermc.org/) with a Paper server (or similar) "enables clients from Minecraft Bedrock Edition to join your Minecraft Java server". The example also includes [Floodgate](https://wiki.geysermc.org/floodgate/) which "allows Xbox Live authenticated Bedrock users to join without a Java Edition account".
 
 ```yaml title="compose.yaml"
 
 services:
   mc:
-    image: itzg/minecraft-server:latest
+    image: ghcr.io/energypatrikhu/pterodactyl-minecraft-server:latest
     pull_policy: daily
     environment:
       EULA: "true"
@@ -22,10 +22,10 @@ services:
       - "25565:25565"
       - "19132:19132/udp"
     volumes:
-      - ./data:/data
+      - ./home/container:/home/container
 ```
 
-[Source](https://github.com/itzg/docker-minecraft-server/blob/master/examples/geyser/docker-compose.yml)
+[Source](https://github.com/energypatrikhu/pterodactyl-minecraft-server/blob/master/examples/geyser/docker-compose.yml)
 
 
 ## mc-router with auto-scale
@@ -50,14 +50,14 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
 
   vanilla:
-    image: itzg/minecraft-server
+    image: ghcr.io/energypatrikhu/pterodactyl-minecraft-server
     environment:
       EULA: "TRUE"
     labels:
       mc-router.host: "vanilla.example.com"
 
   paper:
-    image: itzg/minecraft-server
+    image: ghcr.io/energypatrikhu/pterodactyl-minecraft-server
     environment:
       EULA: "TRUE"
       TYPE: PAPER
@@ -89,7 +89,7 @@ With [lazymc-docker-proxy](https://github.com/joesturge/lazymc-docker-proxy) you
 # And that it is not in use by anything else.
 networks:
   minecraft-network:
-    driver: bridge    
+    driver: bridge
     ipam:
       config:
         - subnet: 172.18.0.0/16
@@ -114,7 +114,7 @@ services:
 
   # Standard Docker Minecraft server, also works with other server types
   mc:
-    image: itzg/minecraft-server:java21
+    image: ghcr.io/energypatrikhu/pterodactyl-minecraft-server:java21
     pull_policy: daily
     # Assign a static IP to the server container
     networks:
@@ -137,7 +137,7 @@ services:
     environment:
       EULA: "TRUE"
     volumes:
-      - data:/data
+      - data:/home/container
 
 volumes:
   data:
@@ -147,7 +147,7 @@ volumes:
 ## Lazytainer - Stop Minecraft container based on traffic
 Monitors network traffic to the Minecraft containers. If there is traffic, the container runs, otherwise the container is stopped/paused.
 
-By using [Lazytainer](https://github.com/vmorganp/Lazytainer) with the [docker-minecraft-server](https://github.com/itzg/docker-minecraft-server) a somehow similar behaviour to [Lazymc](https://github.com/timvisee/lazymc) can be archived.
+By using [Lazytainer](https://github.com/vmorganp/Lazytainer) with the [docker-minecraft-server](https://github.com/energypatrikhu/pterodactyl-minecraft-server) a somehow similar behaviour to [Lazymc](https://github.com/timvisee/lazymc) can be archived.
 
 ```yaml title="compose.yaml"
 services:
@@ -167,14 +167,14 @@ services:
     restart: unless-stopped
     network_mode: bridge
   mc:
-    image: itzg/minecraft-server:latest
+    image: ghcr.io/energypatrikhu/pterodactyl-minecraft-server:latest
     pull_policy: daily
     environment:
       EULA: TRUE
       TYPE: PAPER
       MEMORY: 4G
     volumes:
-      - ./data:/data
+      - ./home/container:/home/container
     labels:
       - lazytainer.group=minecraft
     depends_on:
@@ -184,4 +184,4 @@ services:
     stdin_open: true
     restart: unless-stopped
 ```
-[Source](https://github.com/itzg/docker-minecraft-server/blob/master/examples/lazytainer/docker-compose.yml)
+[Source](https://github.com/energypatrikhu/pterodactyl-minecraft-server/blob/master/examples/lazytainer/docker-compose.yml)

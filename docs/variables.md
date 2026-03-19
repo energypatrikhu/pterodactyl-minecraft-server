@@ -19,13 +19,13 @@
         <tr>
             <td><code>UID</code></td>
             <td>The linux user id to run as</td>
-            <td><code>1000</code></td>
+            <td><code>988</code></td>
             <td>⬜️</td>
         </tr>
         <tr>
             <td><code>GID</code></td>
             <td>The linux group id to run as</td>
-            <td><code>1000</code></td>
+            <td><code>988</code></td>
             <td>⬜️</td>
         </tr>
         <tr>
@@ -605,7 +605,7 @@ This image maps known server properties as described in [this section](configura
         </tr>
         <tr>
             <td><code>CF_EXCLUDE_INCLUDE_FILE</code></td>
-            <td>Global and per modpack exclusions can be declared in a JSON file and referenced with this variable. <br /><br />By default, the <a href="https://github.com/itzg/docker-minecraft-server/blob/master/files/cf-exclude-include.json">file bundled with the image</a> will be used, but can be disabled by setting this to an empty string. The schema of this file is <a href="https://github.com/itzg/mc-image-helper#excludeinclude-file-schema">documented here</a>.</td>
+            <td>Global and per modpack exclusions can be declared in a JSON file and referenced with this variable. <br /><br />By default, the <a href="https://github.com/energypatrikhu/pterodactyl-minecraft-server/blob/master/files/cf-exclude-include.json">file bundled with the image</a> will be used, but can be disabled by setting this to an empty string. The schema of this file is <a href="https://github.com/itzg/mc-image-helper#excludeinclude-file-schema">documented here</a>.</td>
             <td><code></code></td>
             <td>⬜️</td>
         </tr>

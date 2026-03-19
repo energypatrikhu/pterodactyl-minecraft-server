@@ -76,11 +76,11 @@ To force include client mods, set `MODRINTH_FORCE_INCLUDE_FILES` to a comma or n
 
 ## Default exclude/includes
 
-The image comes with a default set of exclude/includes, maintained [in the repo files area](https://github.com/itzg/docker-minecraft-server/blob/master/files/modrinth-exclude-include.json) and uses the same [JSON schema](https://github.com/itzg/mc-image-helper?tab=readme-ov-file#excludeinclude-file-schema) as Auto CurseForge. Those defaults can be disabled by setting the env var `MODRINTH_DEFAULT_EXCLUDE_INCLUDES` to an empty string.
+The image comes with a default set of exclude/includes, maintained [in the repo files area](https://github.com/energypatrikhu/pterodactyl-minecraft-server/blob/master/files/modrinth-exclude-include.json) and uses the same [JSON schema](https://github.com/itzg/mc-image-helper?tab=readme-ov-file#excludeinclude-file-schema) as Auto CurseForge. Those defaults can be disabled by setting the env var `MODRINTH_DEFAULT_EXCLUDE_INCLUDES` to an empty string.
 
 ## Excluding Overrides Files
 
-Modrinth mrpack/zip files may include an `overrides` subdirectory that contains config files, world data, and extra mod files. All of those files will be extracted into the `/data` path of the container. If any of those files, such as incompatible mods, need to be excluded from extraction, then the `MODRINTH_OVERRIDES_EXCLUSIONS` variable can be set with a comma or newline delimited list of ant-style paths ([see below](#ant-style-paths)) to exclude, relative to the overrides (or `/data`) directory.
+Modrinth mrpack/zip files may include an `overrides` subdirectory that contains config files, world data, and extra mod files. All of those files will be extracted into the `/home/container` path of the container. If any of those files, such as incompatible mods, need to be excluded from extraction, then the `MODRINTH_OVERRIDES_EXCLUSIONS` variable can be set with a comma or newline delimited list of ant-style paths ([see below](#ant-style-paths)) to exclude, relative to the overrides (or `/home/container`) directory.
 
 ### Ant-style paths
 
@@ -95,13 +95,13 @@ Ant-style paths can include the following globbing/wildcard symbols:
 !!! example
 
     The following compose `environment` entries show how to exclude Iris and Sodium mods from the overrides
-    
+
     ```yaml
       MODRINTH_OVERRIDES_EXCLUSIONS: mods/NekosEnchantedBooks-*.jar,mods/citresewn-*.jar
     ```
-    
+
     or using newline delimiter, which improves maintainability
-    
+
     ```yaml
       MODRINTH_OVERRIDES_EXCLUSIONS: |
         mods/NekosEnchantedBooks-*.jar

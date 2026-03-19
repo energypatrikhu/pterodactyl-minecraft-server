@@ -5,7 +5,7 @@ The documentation for this image/repository is written in markdown and built usi
 !!! note
     The README.md rarely needs to be modified and only serves as a brief introduction to the project.
 
-The documentation source is maintained in the [docs](https://github.com/itzg/docker-minecraft-server/tree/master/docs) folder and is organized into sections by directory and files. Look through the existing content to determine if an existing file should be updated or a new file/directory added.
+The documentation source is maintained in the [docs](https://github.com/energypatrikhu/pterodactyl-minecraft-server/tree/master/docs) folder and is organized into sections by directory and files. Look through the existing content to determine if an existing file should be updated or a new file/directory added.
 
 It will be very helpful to view the rendered documentation as you're editing. To do that run the following from the top-level directory:
 

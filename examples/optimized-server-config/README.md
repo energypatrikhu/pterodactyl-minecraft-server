@@ -36,7 +36,7 @@ version: "3.8"
 
 services:
   mc:
-    image: itzg/minecraft-server
+    image: ghcr.io/energypatrikhu/pterodactyl-minecraft-serveru/pterodactyl-minecraft-server
     environment:
       EULA: "TRUE"
       TYPE: "PAPER"
@@ -56,12 +56,12 @@ version: "3.8"
 
 services:
   mc:
-    image: itzg/minecraft-server
+    image: ghcr.io/energypatrikhu/pterodactyl-minecraft-server
     environment:
       EULA: "TRUE"
       TYPE: "PURPUR"
       VERSION: "1.21.1"
-      
+
       # URL to the root of your config repository (e.g. raw.githubusercontent.com)
       # The script automatically appends "/<VERSION>/<FILE>" to this URL.
       PURPUR_CONFIG_REPO: "https://raw.githubusercontent.com/Alpha018/paper-config-optimized/refs/heads/main"
@@ -76,12 +76,12 @@ version: "3.8"
 
 services:
   mc:
-    image: itzg/minecraft-server
+    image: ghcr.io/energypatrikhu/pterodactyl-minecraft-server
     environment:
       EULA: "TRUE"
       TYPE: "PUFFERFISH"
       VERSION: "1.21.1" # Must match a folder in your repo
-      
+
       # Automagically download optimized configs (bukkit.yml, spigot.yml, pufferfish.yml)
       PUFFERFISH_CONFIG_REPO: "https://raw.githubusercontent.com/Alpha018/paper-config-optimized/refs/heads/main"
 ```
@@ -100,14 +100,14 @@ If you also want to download a base `server.properties` file from your repositor
 ```yaml
     environment:
       # ... other vars ...
-      
+
       # Option A: Base URL (Smart)
       # Will look for: https://.../main/1.21.1/server.properties
       SERVER_PROPERTIES_REPO_URL: "https://raw.githubusercontent.com/Alpha018/paper-config-optimized/refs/heads/main"
 
       # Option B: Specific URL (Manual)
       # SERVER_PROPERTIES_REPO_URL: "https://gist.githubusercontent.com/.../server.properties"
-      
+
       # These will OVERRIDE settings in the downloaded file
       MOTD: "My Custom Instance"
       MAX_PLAYERS: 50

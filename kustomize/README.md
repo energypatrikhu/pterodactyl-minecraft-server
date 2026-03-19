@@ -8,7 +8,7 @@ nameSuffix: "-forge"
 commonLabels:
   server: forge
 bases:
-  - https://github.com/itzg/docker-minecraft-server.git/kustomize/base
+  - https://github.com/energypatrikhu/pterodactyl-minecraft-server.git/kustomize/base
 configMapGenerator:
   - name: mc
     envs:
