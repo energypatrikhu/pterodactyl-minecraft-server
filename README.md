@@ -1,4 +1,22 @@
+# Docker Minecraft Server for Pterodactyl Panel
 
+This is a fork of [itzg/docker-minecraft-server](https://github.com/itzg/docker-minecraft-server) customized for use with Pterodactyl Panel.
+
+## Pterodactyl Eggs
+
+Pterodactyl Panel eggs for this image can be found in [the eggs directory](eggs) of this repo:
+
+- [Vanilla](eggs/egg-itzg-vanilla.json)
+- [Forge](eggs/egg-itzg-forge.json)
+- [Fabric](eggs/egg-itzg-fabric.json)
+- [NeoForge](eggs/egg-itzg-neoforge.json)
+- [CurseForge](eggs/egg-itzg-curseforge.json)
+- [Modrinth](eggs/egg-itzg-modrinth.json)
+- [FTB](eggs/egg-itzg-ftb.json)
+
+> **Note:** The eggs contain the minimal required environment variables. For a complete list of all supported environment variables, please refer to the [documentation](https://docker-minecraft-server.readthedocs.io/).
+
+## Original README
 
 [![GitHub Issues](https://img.shields.io/github/issues-raw/energypatrikhu/pterodactyl-minecraft-server.svg)](https://github.com/energypatrikhu/pterodactyl-minecraft-server/issues)
 [![Discord](https://img.shields.io/discord/660567679458869252?label=Discord&logo=discord)](https://discord.gg/DXfKpjB)
