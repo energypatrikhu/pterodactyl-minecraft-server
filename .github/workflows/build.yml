@@ -83,8 +83,7 @@ jobs:
         with:
           # NOTE for forks: if your Docker Hub organization doesn't match your Github repo's,
           # then the use of ${{ github.repository_owner }} will need to be replaced.
-          images: |
-            ghcr.io/${{ github.repository_owner }}/pterodactyl-minecraft-server
+          images: ${{ github.repository }}
           tags: |
             # Apply the variant as a moving tag for most recent commit per variant
             type=raw,value=${{ matrix.variant }},enable=${{ github.ref_name == github.event.repository.default_branch }}
@@ -113,12 +112,11 @@ jobs:
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3.7.0
 
-      - name: Login to GHCR
-        uses: docker/login-action@v3.7.0
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v4
         with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ github.token }}
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.DOCKER_TOKEN }}
 
       - name: Build and push
         uses: docker/build-push-action@v6.19.2
