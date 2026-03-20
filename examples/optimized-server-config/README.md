@@ -36,7 +36,7 @@ version: "3.8"
 
 services:
   mc:
-    image: ghcr.io/energypatrikhu/pterodactyl-minecraft-serveru/pterodactyl-minecraft-server
+    image: energypatrikhu/pterodactyl-minecraft-serveru/pterodactyl-minecraft-server
     environment:
       EULA: "TRUE"
       TYPE: "PAPER"
@@ -56,7 +56,7 @@ version: "3.8"
 
 services:
   mc:
-    image: ghcr.io/energypatrikhu/pterodactyl-minecraft-server
+    image: energypatrikhu/pterodactyl-minecraft-server
     environment:
       EULA: "TRUE"
       TYPE: "PURPUR"
@@ -76,7 +76,7 @@ version: "3.8"
 
 services:
   mc:
-    image: ghcr.io/energypatrikhu/pterodactyl-minecraft-server
+    image: energypatrikhu/pterodactyl-minecraft-server
     environment:
       EULA: "TRUE"
       TYPE: "PUFFERFISH"

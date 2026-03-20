@@ -2,11 +2,11 @@
 
 Image references can either omit the tag, which implies the tag `latest`, such as
 
-    ghcr.io/energypatrikhu/pterodactyl-minecraft-server
+    energypatrikhu/pterodactyl-minecraft-server
 
 or explicitly include the tag, such as
 
-    ghcr.io/energypatrikhu/pterodactyl-minecraft-server:<tag>
+    energypatrikhu/pterodactyl-minecraft-server:<tag>
 
 where `<tag>` refers to the first column of this table:
 
@@ -34,7 +34,7 @@ Notes
     With docker run command-line
 
     ```
-    docker run -it -e EULA=true ghcr.io/energypatrikhu/pterodactyl-minecraft-server:java8
+    docker run -it -e EULA=true energypatrikhu/pterodactyl-minecraft-server:java8
     ```
 
     or in a compose file
@@ -42,7 +42,7 @@ Notes
     ```yaml
     services:
       mc:
-        image: ghcr.io/energypatrikhu/pterodactyl-minecraft-server:java8
+        image: energypatrikhu/pterodactyl-minecraft-server:java8
     ```
 
 !!! note "Latest"
@@ -59,7 +59,7 @@ Since the tags referenced above will shift as the newest image build brings in n
 
 The syntax of released image tags is:
 
-    ghcr.io/energypatrikhu/pterodactyl-minecraft-server:<release>-<java tag>
+    energypatrikhu/pterodactyl-minecraft-server:<release>-<java tag>
 
 where `java tag` still refers to the first column of the table above and `release` refers to [one of the image releases](https://github.com/energypatrikhu/pterodactyl-minecraft-server/releases).
 
@@ -68,7 +68,7 @@ where `java tag` still refers to the first column of the table above and `releas
     For example, the 2024.4.0 release of the Java 17 image would be
 
     ```
-    ghcr.io/energypatrikhu/pterodactyl-minecraft-server:2024.4.0-java17
+    energypatrikhu/pterodactyl-minecraft-server:2024.4.0-java17
     ```
 
 ### Stable image tag
@@ -81,7 +81,7 @@ The `stable` image tag combines the benefits of `latest` and [release versions](
 
 ### Class file version 65.0
 
-If encountering a startup failure similar to the following examples, then ensure that the latest image has been re-pulled to use a Java 21. Alternatively, set the image tag specifically to `ghcr.io/energypatrikhu/pterodactyl-minecraft-server:java21`.
+If encountering a startup failure similar to the following examples, then ensure that the latest image has been re-pulled to use a Java 21. Alternatively, set the image tag specifically to `energypatrikhu/pterodactyl-minecraft-server:java21`.
 
 > Exception in thread "ServerMain" java.lang.UnsupportedClassVersionError: org/bukkit/craftbukkit/Main has been compiled by a more recent version of the Java Runtime (class file version 65.0), this version of the Java Runtime only recognizes class file versions up to 61.0
 

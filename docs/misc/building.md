@@ -9,7 +9,7 @@ services:
     build:
       context: .
       dockerfile_inline: |
-        FROM ghcr.io/energypatrikhu/pterodactyl-minecraft-server:latest
+        FROM energypatrikhu/pterodactyl-minecraft-server:latest
 
         RUN apt-get update && apt-get install -y \
             webp \
@@ -35,7 +35,7 @@ Here is an example to add Nvidia GPU support for C2ME:
         build:
           context: .
           dockerfile_inline: |
-            FROM ghcr.io/energypatrikhu/pterodactyl-minecraft-server:java25
+            FROM energypatrikhu/pterodactyl-minecraft-server:java25
 
             # Install OpenCL loader and NVIDIA driver capabilities
             RUN apt-get update && apt-get install -y \
@@ -87,10 +87,10 @@ Here is an example to add Nvidia GPU support for C2ME:
 
 ## Building image locally with alternate Java base
 
-An alternate Java base image can be specified by setting the [docker build argument](https://docs.docker.com/reference/cli/docker/buildx/build/#build-arg) `BASE_IMAGE` to the desired base image. The following shows an example of using the base image `ghcr.io/graalvm/graalvm-ce:ol8-java11`:
+An alternate Java base image can be specified by setting the [docker build argument](https://docs.docker.com/reference/cli/docker/buildx/build/#build-arg) `BASE_IMAGE` to the desired base image. The following shows an example of using the base image `graalvm/graalvm-ce:ol8-java11`:
 
 ```shell
-docker build --build-arg BASE_IMAGE=ghcr.io/graalvm/graalvm-ce:ol8-java11 -t IMG_PREFIX/minecraft-server:java11-graalvm .
+docker build --build-arg BASE_IMAGE=graalvm/graalvm-ce:ol8-java11 -t IMG_PREFIX/minecraft-server:java11-graalvm .
 ```
 
 ## Building a multi-architecture image

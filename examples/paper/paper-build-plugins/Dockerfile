@@ -1,4 +1,4 @@
-FROM ghcr.io/energypatrikhu/pterodactyl-minecraft-server
+FROM energypatrikhu/pterodactyl-minecraft-server
 
 ENV TYPE=PAPER
 

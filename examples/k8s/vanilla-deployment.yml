@@ -24,7 +24,7 @@ spec:
         app: mc-vanilla
     spec:
       containers:
-        - image: ghcr.io/energypatrikhu/pterodactyl-minecraft-serveru/pterodactyl-minecraft-server
+        - image: energypatrikhu/pterodactyl-minecraft-serveru/pterodactyl-minecraft-server
           name: mc-vanilla
           env:
             # Use secret in real usage

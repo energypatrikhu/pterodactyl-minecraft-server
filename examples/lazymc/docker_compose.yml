@@ -20,7 +20,7 @@ networks:
 
 services:
   lazymc:
-    image: ghcr.io/joesturge/lazymc-docker-proxy:latest
+    image: joesturge/lazymc-docker-proxy:latest
     # the IPs should start at .2 as .1 is reserved for the gateway
     networks:
       minecraft-network:
@@ -38,7 +38,7 @@ services:
 
   # Standard Docker Minecraft server, also works with other server types
   mc:
-    image: ghcr.io/energypatrikhu/pterodactyl-minecraft-serveru/pterodactyl-minecraft-serveru/pterodactyl-minecraft-server:java21
+    image: energypatrikhu/pterodactyl-minecraft-serveru/pterodactyl-minecraft-serveru/pterodactyl-minecraft-server:java21
     # Assign a static IP to the server container
     networks:
       minecraft-network:

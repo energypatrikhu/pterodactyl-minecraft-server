@@ -1,6 +1,6 @@
 services:
   mc:
-    image: ghcr.io/energypatrikhu/pterodactyl-minecraft-serveru/pterodactyl-minecraft-server:latest
+    image: energypatrikhu/pterodactyl-minecraft-serveru/pterodactyl-minecraft-server:latest
     tty: true
     stdin_open: true
     ports:

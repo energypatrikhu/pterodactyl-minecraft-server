@@ -1,6 +1,6 @@
 services:
   mc:
-    image: ghcr.io/energypatrikhu/pterodactyl-minecraft-server
+    image: energypatrikhu/pterodactyl-minecraft-server
     environment:
       EULA: "true"
       TYPE: FABRIC

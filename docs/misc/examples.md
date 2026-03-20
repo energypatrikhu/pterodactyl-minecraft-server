@@ -10,7 +10,7 @@ Using the [GeyserMC plugin](https://geysermc.org/) with a Paper server (or simil
 
 services:
   mc:
-    image: ghcr.io/energypatrikhu/pterodactyl-minecraft-server:latest
+    image: energypatrikhu/pterodactyl-minecraft-server:latest
     pull_policy: daily
     environment:
       EULA: "true"
@@ -50,14 +50,14 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
 
   vanilla:
-    image: ghcr.io/energypatrikhu/pterodactyl-minecraft-server
+    image: energypatrikhu/pterodactyl-minecraft-server
     environment:
       EULA: "TRUE"
     labels:
       mc-router.host: "vanilla.example.com"
 
   paper:
-    image: ghcr.io/energypatrikhu/pterodactyl-minecraft-server
+    image: energypatrikhu/pterodactyl-minecraft-server
     environment:
       EULA: "TRUE"
       TYPE: PAPER
@@ -96,7 +96,7 @@ networks:
 
 services:
   lazymc:
-    image: ghcr.io/joesturge/lazymc-docker-proxy:latest
+    image: joesturge/lazymc-docker-proxy:latest
     # the IPs should start at .2 as .1 is reserved for the gateway
     networks:
       minecraft-network:
@@ -114,7 +114,7 @@ services:
 
   # Standard Docker Minecraft server, also works with other server types
   mc:
-    image: ghcr.io/energypatrikhu/pterodactyl-minecraft-server:java21
+    image: energypatrikhu/pterodactyl-minecraft-server:java21
     pull_policy: daily
     # Assign a static IP to the server container
     networks:
@@ -152,7 +152,7 @@ By using [Lazytainer](https://github.com/vmorganp/Lazytainer) with the [docker-m
 ```yaml title="compose.yaml"
 services:
   lazytainer:
-    image: ghcr.io/vmorganp/lazytainer:master
+    image: vmorganp/lazytainer:master
     environment:
       VERBOSE: false
     ports:
@@ -167,7 +167,7 @@ services:
     restart: unless-stopped
     network_mode: bridge
   mc:
-    image: ghcr.io/energypatrikhu/pterodactyl-minecraft-server:latest
+    image: energypatrikhu/pterodactyl-minecraft-server:latest
     pull_policy: daily
     environment:
       EULA: TRUE

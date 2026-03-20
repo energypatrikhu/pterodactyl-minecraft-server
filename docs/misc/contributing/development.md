@@ -34,7 +34,7 @@ The distribution will be installed in the project's `build/install/mc-image-help
 Refer to the instructions above to mount any locally modified image scripts or build a local copy of the image using or with alternate `BASE_IMAGE`, as described above:
 
 ```shell
-docker build -t ghcr.io/energypatrikhu/pterodactyl-minecraft-server .
+docker build -t energypatrikhu/pterodactyl-minecraft-server .
 ```
 
 Mount the local mc-image-helper distribution directory as a volume in the container at the path `/usr/share/mc-image-helper`, such as
@@ -43,7 +43,7 @@ Mount the local mc-image-helper distribution directory as a volume in the contai
 docker run -it --rm \
   -v /path/to/mc-image-helper/build/install/mc-image-helper:/usr/share/mc-image-helper \
   -e EULA=true \
-  ghcr.io/energypatrikhu/pterodactyl-minecraft-server
+  energypatrikhu/pterodactyl-minecraft-server
 ```
 
 In a compose file, include the volume mount in the `volumes` section of the container definition:

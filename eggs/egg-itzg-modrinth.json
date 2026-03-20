@@ -10,12 +10,12 @@
   "description": null,
   "features": [],
   "docker_images": {
-    "Java 25": "ghcr.io\/energypatrikhu\/pterodactyl-minecraft-server:java25",
-    "Java 21": "ghcr.io\/energypatrikhu\/pterodactyl-minecraft-server:java21",
-    "Java 17": "ghcr.io\/energypatrikhu\/pterodactyl-minecraft-server:java17",
-    "Java 16": "ghcr.io\/energypatrikhu\/pterodactyl-minecraft-server:java16",
-    "Java 11": "ghcr.io\/energypatrikhu\/pterodactyl-minecraft-server:java11",
-    "Java 8": "ghcr.io\/energypatrikhu\/pterodactyl-minecraft-server:java8"
+    "Java 25": "energypatrikhu\/pterodactyl-minecraft-server:java25",
+    "Java 21": "energypatrikhu\/pterodactyl-minecraft-server:java21",
+    "Java 17": "energypatrikhu\/pterodactyl-minecraft-server:java17",
+    "Java 16": "energypatrikhu\/pterodactyl-minecraft-server:java16",
+    "Java 11": "energypatrikhu\/pterodactyl-minecraft-server:java11",
+    "Java 8": "energypatrikhu\/pterodactyl-minecraft-server:java8"
   },
   "file_denylist": [],
   "startup": "\/image\/scripts\/start",

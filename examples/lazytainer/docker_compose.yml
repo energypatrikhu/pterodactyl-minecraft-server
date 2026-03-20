@@ -1,6 +1,6 @@
 services:
   lazytainer:
-    image: ghcr.io/vmorganp/lazytainer:master
+    image: vmorganp/lazytainer:master
     environment:
       VERBOSE: false
     ports:
@@ -15,7 +15,7 @@ services:
     restart: unless-stopped
     network_mode: bridge
   mc:
-    image: ghcr.io/energypatrikhu/pterodactyl-minecraft-server
+    image: energypatrikhu/pterodactyl-minecraft-server
     environment:
       EULA: TRUE
       TYPE: PAPER

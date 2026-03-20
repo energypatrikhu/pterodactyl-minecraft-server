@@ -65,7 +65,7 @@ This is how your `compose.yaml` file could look like:
 
 services:
   minecraft:
-    image: ghcr.io/energypatrikhu/pterodactyl-minecraft-server
+    image: energypatrikhu/pterodactyl-minecraft-server
     ports:
       - "25565:25565"
     volumes:

@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: mc
-          image: ghcr.io/energypatrikhu/pterodactyl-minecraft-server
+          image: energypatrikhu/pterodactyl-minecraft-server
           imagePullPolicy: Always
           env:
             - name: EULA
