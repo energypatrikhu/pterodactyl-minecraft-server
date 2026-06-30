@@ -18,6 +18,7 @@ apk add --no-cache -U \
     curl \
     iputils \
     git \
+    git-lfs \
     jq \
     mysql-client \
     tzdata \
@@ -32,6 +33,7 @@ apk add --no-cache -U \
     libwebp \
     libcap \
     numactl \
+    jattach \
     ${EXTRA_ALPINE_PACKAGES}
 
 # Download and install patched knockd
@@ -46,3 +48,4 @@ cat <<EOF >> /etc/gitconfig
 	name = Minecraft Server on Docker
 	email = server@example.com
 EOF
+git lfs install

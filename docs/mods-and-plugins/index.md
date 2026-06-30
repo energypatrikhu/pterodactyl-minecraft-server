@@ -42,6 +42,19 @@ There are optional volume paths that can be attached to supply content to be cop
 `/mods`
 : content in this directory is synchronized into `/home/container/mods` for server types that use mods, [as described above](#mods-vs-plugins). For special cases, the source can be changed by setting `COPY_MODS_SRC` and destination by setting `COPY_MODS_DEST`.
 
+!!! example "Loading mods from a local directory"
+
+    This is the most basic example, where `./mods` is mounted as `/mods`. If the directory with the server's mods is located somewhere else, `./mods` can be modified accordingly.
+
+    ```yaml
+        environment:
+          EULA: "TRUE"
+          TYPE: "NEOFORGE"
+        volumes:
+        - "./data:/data"
+        - "./mods:/mods"
+    ```
+
 `/config`
 : contents are synchronized into `/home/container/config` by default, but can be changed with `COPY_CONFIG_DEST`. For example, `-v ./config:/config -e COPY_CONFIG_DEST=/home/container` will allow you to copy over files like `bukkit.yml` and so on directly into the server directory. The source can be changed by setting `COPY_CONFIG_SRC`. Set `SYNC_SKIP_NEWER_IN_DESTINATION=false` if you want files from `/config` to take precedence over newer files in `/home/container/config`.
 
@@ -149,6 +162,54 @@ Disabling mods within docker compose files:
         mod1.jar
         mod2.jar
 ```
+
+### Loading container configuration from a pack
+
+A pack can ship its own container configuration so that the server type, version,
+and other variables travel with the pack rather than being declared by the user.
+At startup, before `TYPE` is dispatched, the container can load environment
+variables from a file on disk, a URL, an entry inside an archive, or from the
+`.env` of each `GENERIC_PACK(S)` entry.
+
+- `LOAD_ENV_FROM_GENERIC_PACK`: when `true`, each entry in `GENERIC_PACKS` (after
+  `GENERIC_PACKS_PREFIX`/`SUFFIX` expansion) is probed for a top-level `.env`
+  and each one found is sourced in the same order the packs are applied (later
+  packs override earlier ones, matching the layering of the unpack itself). Packs
+  without a `.env` are skipped without error. URLs are downloaded into
+  `/data/packs/` and reused by the regular generic-pack unpack step, so they are
+  not fetched twice.
+- `LOAD_ENV_FROM_FILE`: container path or URL of a shell-style env file (one
+  `KEY=VALUE` per line). Comments and blank lines are allowed.
+- `LOAD_ENV_FROM_ARCHIVE`: container path or URL of a zip/tar archive containing
+  an env file. The entry is sourced into the environment.
+- `LOAD_ENV_FROM_ARCHIVE_ENTRY`: relative path of the env file inside the archive.
+  Defaults to `.env`.
+
+These can be combined. Load order is: generic packs first, then
+`LOAD_ENV_FROM_FILE`, then `LOAD_ENV_FROM_ARCHIVE` — later loads override
+earlier ones, and all of them **override** values passed via `docker run -e` (or
+compose `environment:`), so the pack's declared values win.
+
+```shell
+docker run -d \
+  -e EULA=TRUE \
+  -e GENERIC_PACK=https://cdn.example.org/my-pack.zip \
+  -e LOAD_ENV_FROM_GENERIC_PACK=true \
+  itzg/minecraft-server
+```
+
+Where `my-pack.zip` contains a `.env` at its root such as:
+
+```env
+TYPE=FABRIC
+VERSION=1.21.1
+FABRIC_LOADER_VERSION=0.16.0
+```
+
+!!! warning
+    The env file is sourced by `bash`, so any shell syntax it contains will be
+    evaluated. Only point these variables at sources you trust. `EULA` cannot be
+    set this way — it is checked before the env file is loaded.
 
 ## Mods/plugins list
 

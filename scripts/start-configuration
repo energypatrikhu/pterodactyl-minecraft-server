@@ -123,7 +123,8 @@ function addToProxyArgs() {
 addToProxyArgs http.proxyHost "${PROXY_HOST:-}"
 addToProxyArgs http.proxyPort "${PROXY_PORT:-}"
 addToProxyArgs http.nonProxyHosts "${PROXY_NON_PROXY_HOSTS:-}"
-export MC_IMAGE_HELPER_OPTS+=" ${proxyArgs[*]}"
+LOCAL_IFS=$IFS; IFS=' '; MC_IMAGE_HELPER_OPTS+=" ${proxyArgs[*]}"; IFS=$LOCAL_IFS
+export MC_IMAGE_HELPER_OPTS
 
 function fixJavaPath() {
   # Some Docker management UIs grab all the image declared variables and present them for configuration.
@@ -151,6 +152,31 @@ if ! fixJavaPath; then
 fi
 
 cd /home/container || exit 1
+
+##########################################
+# Optionally load environment variables from a file or archive entry,
+# allowing packs/artifacts to declare TYPE, VERSION and other settings
+# inside-out. Loaded values override anything passed in through docker -e.
+# Generic packs are processed first so that LOAD_ENV_FROM_FILE and
+# LOAD_ENV_FROM_ARCHIVE can override any values they set.
+
+if isTrue "${LOAD_ENV_FROM_GENERIC_PACK:-false}"; then
+  if ! loadEnvFromGenericPack; then
+    exit 1
+  fi
+fi
+
+if [[ ${LOAD_ENV_FROM_FILE:-} ]]; then
+  if ! loadEnvFromFile "${LOAD_ENV_FROM_FILE}"; then
+    exit 1
+  fi
+fi
+
+if [[ ${LOAD_ENV_FROM_ARCHIVE:-} ]]; then
+  if ! loadEnvFromArchive "${LOAD_ENV_FROM_ARCHIVE}" "${LOAD_ENV_FROM_ARCHIVE_ENTRY:-.env}"; then
+    exit 1
+  fi
+fi
 
 export DECLARED_TYPE=${TYPE^^}
 export DECLARED_VERSION="$VERSION"

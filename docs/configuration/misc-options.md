@@ -22,6 +22,15 @@ docker run -d --pull=always \
     -p 25565:25565 -e EULA=TRUE --name mc energypatrikhu/pterodactyl-minecraft-server
 ```
 
+## Clean server libraries
+
+By default, supported server types remove stale server libraries during installation by setting `CLEAN_SERVER_LIBRARIES` to `true`. Set `CLEAN_SERVER_LIBRARIES` to `false` to disable this cleanup if it causes unexpected behavior.
+
+Currently, library cleanup is supported by
+
+- `TYPE=PAPER`
+- `TYPE=PURPUR`
+
 ## Running as alternate user/group ID
 
 By default, the container will switch to and run the Minecraft server as user ID 988 and group ID 988; however, that can be changed by setting the environment variables `UID` and `GID`.
@@ -43,6 +52,8 @@ If this behavior interferes with the log content, then disable TTY or remove the
 ## Server Shutdown Options
 
 To allow time for players to finish what they're doing during a graceful server shutdown, set `STOP_SERVER_ANNOUNCE_DELAY` to a number of seconds to delay after an announcement is posted by the server.
+
+To set a custom command to run at the start of this delay period, set `STOP_SERVER_DELAY_COMMAND` to the full command. This will run in place of the announcement.
 
 !!! warning "Increase stop grace period"
 
